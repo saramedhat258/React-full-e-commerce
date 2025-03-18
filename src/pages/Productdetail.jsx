@@ -4,41 +4,43 @@ import { assetsimg } from '../assets/images/assetsimg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { fetchOneProduct } from '../Axios'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 function Productdetail() {
-    fetch('http://localhost:3000/products')
-    .then(res=>res.json())
-    .then(data=>console.log(data))
+    const [details, setDetails] = useState([])
+    const param = useParams()
+
+    useEffect(() => {
+        fetchOneProduct(setDetails,param.id )
+    }, [param.id]) 
+
+    console.log(details)
+    const imageSRC = details?.images?.length > 0 ? details.images[0].secure_url : "";
     return (
         <>
             <Header />
             {/* product*/}
             <section className='w-3/4 mx-auto grid grid-col-1 md:grid-cols-2 pt-32 gap-5'>
-
                 {/* product images */}
-                <section className=' flex flex-col gap-5 md:mx-auto '>
-                    <div className=''>
-                        <img src={assetsimg.test} alt="product detail" className='xs:w-80 xxs:w-64 w-60 cursor-pointer' />
-                    </div>
-                    <div className='flex xs:gap-4 xxs:gap-2 gap-3 mt-0'>
-                        <img src={assetsimg.test} alt="product detail" className='xs:w-24 xxs:w-20 w-[4.5rem] cursor-pointer' />
-                        <img src={assetsimg.test} alt="product detail" className='xs:w-24 xxs:w-20 w-[4.5rem] cursor-pointer' />
-                        <img src={assetsimg.test} alt="product detail" className='xs:w-24 xxs:w-20 w-[4.5rem] cursor-pointer' />
-                    </div>
+                <section className='mx-auto w-3/4 '>
+                        <img src={imageSRC} alt="product detail" className='cursor-pointer w-full h-full' />
                 </section>
                 {/* product info */}
                 <section className=''>
                     <section className='flex gap-1 align-center'>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300'/></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300'/></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300'/></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300'/></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300'/></p>
+                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
+                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
+                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
+                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
+                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
                         <p>11 review</p>
                     </section>
                     <section className='space-y-2 mt-5'>
-                        <p className='text-3xl font-medium'>tray table</p>
-                        <p className=' text-gray-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias eum voluptatem iste qui, molestiae at.</p>
-                        <p className='text-xl font-medium'>199 $</p>
+                        <p className='text-3xl font-medium'>{details.name}</p>
+                        <p className=' text-gray-500'>{details.description}</p>
+                        <p className='text-xl font-medium'>{details.price} $</p>
                     </section>
                     <hr className='my-5' />
                     <section>
@@ -65,14 +67,14 @@ function Productdetail() {
                             <p className='bg-black rounded-lg text-center p-2 text-white cursor-pointer'>Add to cart</p>
                         </section>
                     </section>
-                    <hr className='mt-5'/>
+                    <hr className='mt-5' />
                     <section className='mt-2 flex gap-10'>
                         <p className='text-sm'>category: </p>
                         <p className='text-sm text-gray-500'>living room </p>
                     </section>
-                    
+
                 </section>
-                
+
             </section>
             <Footer />
         </>
