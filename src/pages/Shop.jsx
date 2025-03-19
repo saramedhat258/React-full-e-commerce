@@ -11,7 +11,7 @@ import { fetchproducts } from '../Axios'
 
 function Shop() {
     const [activeIndex, setActiveIndex] = useState(null)
-    const cat = ["All products", "Tabels and Drawer", "Living Room", "Bedroom", "Pillows", "Kitchen"]
+    const cat = ["All products", "Tabels and Drawer", "Living Room", "Bedroom", "Kitchen"]
     const prices = ['All Prices', '0-99.99', '100-199.99', '200-299', '300-400', '400+']
     const [AllProducts, setAllProducts] = useState([])
 

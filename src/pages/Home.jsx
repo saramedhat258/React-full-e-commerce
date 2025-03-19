@@ -1,4 +1,3 @@
-
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { assetsimg } from "../assets/images/assetsimg"
@@ -6,7 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { assets } from "../assets/icons/assets"
 import Bestsellers from "../components/Bestsellers"
+import { useEffect, useState } from "react"
+import { fetchproducts } from "../Axios"
 function Home() {
+    const [AllProducts, setAllProducts] = useState([])
+
+    useEffect(() => {
+        fetchproducts(setAllProducts)
+    }, [])
+
     return (
         <>
             <Header />
@@ -60,13 +67,18 @@ function Home() {
             </section>
             <section className="">
                 <div className="scroll-pl-6 snap-x flex gap-8 w-5/6 mx-auto overflow-x-scroll scroll-smooth mt-10 scrollbar-hide">
-                    <Bestsellers/>
-                    <Bestsellers/>
-                    <Bestsellers/>
-                    <Bestsellers/>
-                    <Bestsellers/>
-                    <Bestsellers/>
-                    <Bestsellers/>
+                    {AllProducts.map(pro => {
+                        if (pro?.newarr===true) {
+                            return(
+                                <div key={pro.id}>
+                                <Bestsellers pro={pro} />
+                            </div>
+                            )
+                            
+                        }
+                    }
+                    )}
+
                 </div>
             </section>
             {/* services //////////////////////////////////*/}
