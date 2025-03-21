@@ -1,5 +1,5 @@
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../components/Global/Header'
+import Footer from '../components/Global/Footer'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +16,6 @@ function Productdetail() {
         fetchOneProduct(setDetails,param.id )
     }, [param.id]) 
 
-    console.log(details)
     const imageSRC = details?.images?.length > 0 ? details.images[0].secure_url : "";
     return (
         <>
@@ -70,7 +69,7 @@ function Productdetail() {
                     <hr className='mt-5' />
                     <section className='mt-2 flex gap-10'>
                         <p className='text-sm'>category: </p>
-                        <p className='text-sm text-gray-500'>living room </p>
+                        <p className='text-sm text-gray-500'>{details?.category?.name} </p>
                     </section>
 
                 </section>

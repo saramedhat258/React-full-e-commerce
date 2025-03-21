@@ -1,4 +1,4 @@
-import { assets } from "../assets/icons/assets"
+import { assets } from "../../assets/icons/assets"
 
 function MinFooter() {
     return (

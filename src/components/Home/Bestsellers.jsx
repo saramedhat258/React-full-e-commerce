@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom"
-import { assets } from "../assets/icons/assets"
+import { assets } from "../../assets/icons/assets"
 
 function Bestsellers({pro}) {
     return (

@@ -15,8 +15,16 @@ export const AuthProvider=({children})=>{
     }
     }, []);
 
+    const logout=()=>{
+        localStorage.removeItem('auth')
+        setAuth({
+            accsessToken:'',
+            user:null
+        })
+    }
+
     return(
-        <Authcontext.Provider value={{auth,setAuth}}>
+        <Authcontext.Provider value={{auth,setAuth,logout}}>
             {children}
         </Authcontext.Provider>
     )

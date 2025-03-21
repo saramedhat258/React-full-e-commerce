@@ -1,6 +1,6 @@
 import { assetsimg } from "../assets/images/assetsimg"
-import Footer from "../components/Footer"
-import Header from "../components/Header"
+import Footer from "../components/Global/Footer"
+import Header from "../components/Global/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { assets } from "../assets/icons/assets"
@@ -90,7 +90,6 @@ function Shop() {
                                         type="checkbox"
                                         checked={selectedPrice === p}
                                         onChange={() => setSelectedPrice(p)}
-
                                     />
                                 </div>
                             ))}
@@ -99,7 +98,7 @@ function Shop() {
                 </section>
                 {/* products */}
                 <section className="lg:col-span-3 col-span-4">
-                    <MobileFilter />
+                    <MobileFilter categories={categories} prices={prices} setSelectedCat={setSelectedCat} setSelectedPrice={setSelectedPrice} />
                     <p className="mb-5 font-medium text-2xl">{selectedCat}</p>
                     <section className=" grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 sm:justify-between">
                         {filterProducts.map(pro => (

@@ -1,15 +1,18 @@
-import { assets } from "../assets/icons/assets"
+import { assets } from "../../assets/icons/assets"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import Sidecart from "./Sidecart"
-import { useAuth } from "../context/AuthContext"
+import Sidecart from "../Sidecart"
+import { useAuth } from "../../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 function Header() {
     const [open, setopen] = useState(false)
-    const { auth } = useAuth()
+    const [showUser,setShowUser]=useState(false)
+    const { auth,logout } = useAuth()
     const name = auth?.user?.name;
+    const navigate=useNavigate()
 
     let finalnameIcon = "";
     if (name) {
@@ -19,6 +22,10 @@ function Header() {
         } else if (nameIcon.length === 1) {
             finalnameIcon = nameIcon[0][0].toUpperCase(); 
         }
+    }
+    const handleLogin=()=>{
+        logout();
+        navigate('/signin')
     }
 
     console.log(finalnameIcon)
@@ -37,10 +44,11 @@ function Header() {
                             <a href="#contact">Contact Us</a>
                         </div>
                         <div className=" gap-5 hidden md:flex justify-end">
-                            <p className="rounded-full p-1 border-2 border-black">{finalnameIcon}</p>
+                            <p onClick={()=>setShowUser(!showUser)} className="rounded-full p-1 border-2 border-black cursor-pointer">{finalnameIcon}</p>
                             <Sidecart />
                         </div>
-                        <div className="justify-end flex gap-5 md:hidden col-span-3">
+                        <div className="justify-end flex gap-5 md:hidden col-span-3 items-center">
+                            <p onClick={()=>setShowUser(!showUser)} className="rounded-full p-1 border-2 border-black cursor-pointer">{finalnameIcon}</p>
                             <Sidecart />
                             <FontAwesomeIcon className="text-xl" onClick={() => setopen(!open)} icon={faBars} />
                         </div>
@@ -52,12 +60,20 @@ function Header() {
                                 <Link to={'/shop'}>Shop</Link>
                                 <p>Product</p>
                                 <a href="#contact">Contact Us</a>
-                                <p className="rounded-full p-1 border-2 border-black w-1/6 m-auto">{finalnameIcon}</p>
                             </div>
-
                             : ''
+                        
                     }
+                    
                 </section>
+                {
+                        showUser?
+                        <div className="md:w-1/4 w-5/6 m-auto absolute md:right-28 right-16 top-24 flex flex-col gap-5 bg-orange-100 bg-opacity-80 p-5 ">
+                            <p >Welcome, <span className="font-medium">{name}</span></p>
+                            <button onClick={handleLogin} className="bg-black text-white p-3 rounded-lg w-">logout</button>
+                        </div>
+                        :''
+                    }
             </header>
 
         </>
