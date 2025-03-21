@@ -1,8 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { useState,useContext,createContext,useEffect} from "react";
-
-
-
 const Authcontext=createContext()
 export const AuthProvider=({children})=>{
     const [auth,setAuth]=useState({
@@ -16,7 +14,7 @@ export const AuthProvider=({children})=>{
         setAuth(authData); 
     }
     }, []);
-    
+
     return(
         <Authcontext.Provider value={{auth,setAuth}}>
             {children}
