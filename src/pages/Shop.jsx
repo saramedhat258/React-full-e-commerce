@@ -90,6 +90,7 @@ function Shop() {
                                         type="checkbox"
                                         checked={selectedPrice === p}
                                         onChange={() => setSelectedPrice(p)}
+                                        className="checked:bg-black focus:ring-0"
                                     />
                                 </div>
                             ))}

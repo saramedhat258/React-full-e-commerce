@@ -47,13 +47,13 @@ function SignUp() {
                     <p className="text-zinc-500">Already have an account? <Link to='/signin' className="text-emerald-500">Sign In</Link></p>
                     <form action="" className=" mt-10" onSubmit={handleRegister}>
                         <sectionc className="flex flex-col gap-5">
-                            <input type="text" placeholder="Your name" value={name} onChange={(e)=>setName(e.target.value)} className="ps-0 pb-3 border-0 border-zinc-200 focus:border-0 border-b-2 " />
-                            <input type="text" placeholder="Email address" value={email} onChange={(e)=>{setEmail(e.target.value)}} className="ps-0 pb-3 border-0 border-zinc-200 focus:border-0 border-b-2 " />
-                            <input type="text" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} className="border-0 ps-0 pb-3 border-zinc-200 focus:border-0 border-b-2 " />
+                            <input type="text" placeholder="Your name" value={name} onChange={(e)=>setName(e.target.value)} className="border-0 border-b-2 border-b-zinc-200 focus:border-b-black focus:ring-0 ps-0 pb-3  " />
+                            <input type="text" placeholder="Email address" value={email} onChange={(e)=>{setEmail(e.target.value)}} className="border-0 border-b-2 border-b-zinc-200 focus:border-b-black focus:ring-0 ps-0 pb-3 " />
+                            <input type="text" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} className="border-0 border-b-2 border-b-zinc-200 focus:border-b-black focus:ring-0 ps-0 pb-3 " />
                         </sectionc>
                         <div className="my-5 text text-red-600">{err&&err}</div>
                         <section className="flex gap-2 items-center mt-10">
-                            <input type="checkbox" className="rounded text-zinc-500"/>
+                            <input type="checkbox" className="rounded text-zinc-500 checked:bg-black focus:ring-0"/>
                             <p className="text-zinc-500">I agree with <span className="text-black font-medium">Privacy Policy</span > and <span className="text-black font-medium">Terms of Use</span></p>
                         </section>
                         <button type="submit" className="p-2 bg-black text-center w-full text-white rounded my-10">Sign Up</button>

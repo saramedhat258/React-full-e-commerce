@@ -3,7 +3,7 @@ import { assets } from "../../assets/icons/assets"
 function MinFooter() {
     return (
         <>
-            <section className="bg-black h-full w-full py-10" id="contact">
+            <section className="bg-black h-fit w-full py-10 " id="contact">
                 {/* section top */}
                 <section className="grid md:grid-cols-2 grid-cols-1 md:justify-between w-5/6 mx-auto pt-5">
                     <section className="text-white flex md:flex-row flex-col md:gap-5 mb-5 items-center">

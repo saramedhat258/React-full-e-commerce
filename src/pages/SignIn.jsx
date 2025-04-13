@@ -57,14 +57,14 @@ function SignIn() {
                     <p className="text-zinc-500">Don’t have an accout yet? <Link to='/' className="text-emerald-500">Sign Up</Link></p>
                     <form action="" className=" mt-10" onSubmit={handleLogin}>
                         <sectionc className="flex flex-col gap-5">
-                            <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Your username or email address" className="ps-0 pb-3 border-0 border-zinc-200 focus:border-0 border-b-2 " />
-                            <input type="text" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" className="border-0 ps-0 pb-3 border-zinc-200 focus:border-0 border-b-2 " />
+                            <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Your username or email address" className="border-0 border-b-2 border-b-zinc-200 focus:border-b-black focus:ring-0 ps-0 pb-3 " />
+                            <input type="text" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" className="border-0 border-b-2 border-b-zinc-200 focus:border-b-black focus:ring-0 ps-0 pb-3 " />
                         </sectionc>
                         <div className="my-5 text text-red-600">{err&&err}</div>
                         <section className="flex justify-between mt-10">
                             <section className="flex gap-2 items-center">
-                                <input type="checkbox" className="rounded text-zinc-500" />
-                                <p className="text-zinc-500">Remember me</p>
+                                <input type="checkbox" className="rounded text-zinc-500 checked:bg-black focus:ring-0" />
+                                <p className="text-zinc-500 ">Remember me</p>
                             </section>
                             <section>
                                 <p className="font-medium">Forgot Password?</p>
