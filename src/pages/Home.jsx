@@ -22,7 +22,7 @@ function Home() {
             <Header />
             {/* slider////////////////////////////// */}
             <section >
-                <img className="w-5/6 mx-auto pt-14 md:pt-[4.5rem]" src={assetsimg.header} alt="header image" />
+                <img className="w-5/6 mx-auto pt-[67px] md:pt-[83px]" src={assetsimg.header} alt="header image" />
             </section>
             {/*simply unique /////////////////////// */}
             <section className="w-5/6 mx-auto gap-5 grid md:grid-cols-2 grid-cols-1 mt-5 ">
@@ -69,7 +69,7 @@ function Home() {
                         <p className="xm:text-4xl text-3xl font-medium">HUNDREDS of</p>
                         <p className="xm:text-4xl text-3xl font-medium mb-4">New lower prices!</p>
                         <p className="xm:text-lg w-4/6 mb-5">It’s more affordable than ever to give every room in your home a stylish makeover</p>
-                        <Link to='/shop'><span className="border-b-2 border-black pb-2 w-1/2">Shop Now <FontAwesomeIcon icon={faArrowRight} /></span></Link>
+                        <Link to='/shop'><span className="border-b-2 border-black pb-2 w-fit">Shop Now <FontAwesomeIcon icon={faArrowRight} /></span></Link>
                     </section>
                 </section>
             </section>

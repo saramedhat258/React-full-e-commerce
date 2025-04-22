@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
             ? JSON.parse(storedAuth)
             : { accessToken: "", user: null };
     })
+    
 
     useEffect(() => {
         const authData = JSON.parse(localStorage.getItem('auth'));

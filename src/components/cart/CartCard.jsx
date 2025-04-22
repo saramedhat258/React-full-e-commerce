@@ -2,7 +2,7 @@
 import { XIcon, Plus, Minus } from "lucide-react"
 import { useContext } from "react";
 import { Cartcontext } from "../../context/CartContext";
-function CartCard({ cartpro }) {
+function CartCard({ cartpro, remove = true }) {
     const imageSRC = cartpro?.product?.images?.length > 0 ? cartpro?.product?.images[0].secure_url : "";
     const { RemovePro, increseQun, decreseQun } = useContext(Cartcontext)
     console.log(cartpro)
@@ -24,7 +24,9 @@ function CartCard({ cartpro }) {
                     </div>
                     <div className="flex flex-col gap-3 text-right">
                         <p className="font-medium">{cartpro?.product?.price * cartpro?.quntity} $</p>
-                        <XIcon color="gray" className="w-8 ms-auto cursor-pointer" onClick={() => RemovePro(cartpro)} />
+                        {
+                            remove && <XIcon color="gray" className="w-8 ms-auto cursor-pointer" onClick={() => RemovePro(cartpro)} />
+                        }
                     </div>
                 </div>
             </div>

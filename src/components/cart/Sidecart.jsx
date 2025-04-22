@@ -7,25 +7,14 @@ import { Cartcontext } from '../../context/CartContext';
 import { useContext } from 'react';
 
 function Drawer() {
-    const { cartPro } = useContext(Cartcontext)
+    const { cartPro,subtotal_total } = useContext(Cartcontext)
     const [isOpen, setIsOpen] = useState(false);
     const toggleDrawer = () => {
         setIsOpen(!isOpen);
     };
+    
     /*calc subtotal and total */
-    const subtotal_total = () => {
-        const subtotal = cartPro.reduce((price, item) => {
-            return price + item.product.price * item.quntity
-        }, 0)
-        const taxrate = 0.1
-        const tax = taxrate * subtotal
-        const total = subtotal + tax
-        return {
-            subtotal: subtotal.toFixed(2),
-            total: total.toFixed(2)
-        }
-    }
-    const { subtotal, total } = subtotal_total(cartPro)
+    const { subtotal, total } = subtotal_total()
 
     return (
         <>

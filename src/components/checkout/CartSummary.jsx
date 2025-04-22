@@ -1,24 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState, useContext } from "react"
 import { Cartcontext } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
-function CartSummary() {
-    const { cartPro } = useContext(Cartcontext)
-    const [addedPrice,setAddedPrice]=useState(null)
-    const subtotal_total = () => {
-        const subtotal = cartPro.reduce((price, item) => {
-            return price + item.product.price * item.quntity
-        }, 0)
-        const finalprice=addedPrice
-        const discount = 0
 
-        const total = (subtotal + finalprice) - discount
-        return {
-            subtotal: subtotal.toFixed(2),
-            total: total.toFixed(2)
-        }
-    }
-    const { subtotal, total } = subtotal_total(cartPro)
-    const [checked, setChecked] = useState('')
+function CartSummary({setStep}) {
+    const {subtotal_total,setAddedPrice } = useContext(Cartcontext)
+    const { subtotal, total } = subtotal_total()
+    const [checked, setChecked] = useState('Free shipping')
     const cartsummary = [
         {
             name: 'Free shipping',
@@ -58,7 +45,7 @@ function CartSummary() {
                         <p>Total</p>
                         <p>${total}</p>
                     </div>
-                    <Link to='/checkout' className='inline-block my-5 w-full p-3 text-white bg-black rounded-lg text-center'>Checkout</Link>
+                    <button onClick={()=>setStep(prev=>prev+1)} className='inline-block my-5 w-full p-3 text-white bg-black rounded-lg text-center'>Checkout</button>
                 </div>
         </>
     )

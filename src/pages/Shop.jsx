@@ -8,12 +8,15 @@ import { useState, useEffect } from "react"
 import ProductCard from "../components/ProductCard"
 import MobileFilter from "../components/MobileFilter"
 import { fetchproducts, fetchCategories } from '../Axios'
+import { useLocation } from "react-router-dom"
 
 function Shop() {
+    const location = useLocation()
+    const cat = location.state?.cat || 'All Products'
     const [activeIndex, setActiveIndex] = useState(null)
     const [categories, setCategories] = useState([])
     const [AllProducts, setAllProducts] = useState([])
-    const [selectedCat, setSelectedCat] = useState('All Products')
+    const [selectedCat, setSelectedCat] = useState(cat )
     const [selectedPrice, setSelectedPrice] = useState('All Prices')
 
     const prices = ['All Prices', '0-99.99', '100-199.99', '200-299', '300-400', '400+']
@@ -22,21 +25,20 @@ function Shop() {
         fetchproducts(setAllProducts)
         fetchCategories(setCategories)
     }, [])
-
+    
     const filterProducts = AllProducts.filter(pro => {
         const matchedGategories = selectedCat === 'All Products' || selectedCat === pro?.category?.name
         const proPrice = pro.price
         let matchedPrice = true
 
         if (selectedPrice !== 'All Prices') {
-            if(selectedPrice.includes('+')){
-                const min =parseInt(selectedPrice)
-                matchedPrice=proPrice>=min
-            }else{
+            if (selectedPrice.includes('+')) {
+                const min = parseInt(selectedPrice)
+                matchedPrice = proPrice >= min
+            } else {
                 const [min, max] = selectedPrice.split('-').map(Number)
-                matchedPrice =proPrice >= min && proPrice <= max
+                matchedPrice = proPrice >= min && proPrice <= max
             }
-            
         }
         return matchedGategories && matchedPrice
     })
@@ -45,7 +47,7 @@ function Shop() {
         <>
             <section>
                 <Header />
-                <section className="lg:pt-20 md:pt-16 pt-14 h-full">
+                <section className="pt-[67px] md:pt-[83px] h-full">
                     <section className="h-[65vh] w-5/6 mx-auto" style={{ backgroundImage: `url(${assetsimg.shop})`, backgroundSize: 'cover' }}>
                         <section className="lg:pt-32 sm:pt-20 pt-14 w-1/2 mx-auto text-center">
                             <p className="font-medium">Home  <span><FontAwesomeIcon icon={faChevronRight} /></span>  shop</p>
@@ -103,10 +105,10 @@ function Shop() {
                     <p className="mb-5 font-medium text-2xl">{selectedCat}</p>
                     <section className=" grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 sm:justify-between">
                         {filterProducts.map(pro => (
-                                <div key={pro._id}>
-                                    <ProductCard pro={pro} />
-                                </div>
-                            ))
+                            <div key={pro._id}>
+                                <ProductCard pro={pro} />
+                            </div>
+                        ))
                         }
                     </section>
                 </section>

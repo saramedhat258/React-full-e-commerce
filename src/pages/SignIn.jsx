@@ -10,7 +10,8 @@ function SignIn() {
     const [password,setPassword]=useState('')
     const [err,setErr]=useState(null)
     const navigate=useNavigate()
-    const {setAuth}=useAuth()
+    const {setAuth,auth}=useAuth()
+    console.log(auth?.user?.cart)
 
     const handleLogin=async(e)=>{
         e.preventDefault()

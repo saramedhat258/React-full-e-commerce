@@ -8,7 +8,9 @@ import CheckoutSteps from "./CheckoutSteps"
 import ProductsCatDetails from "./ProductsCatDetails"
 import CartSummary from "./CartSummary"
 import SmallProduct from "./SmallProduct"
-
+import OrderSummary from "./OrderSummary"
+import CheckForms from "./CheckForms"
+import OrderComplete from "./OrderComplete"
 function CheckoutCart() {
     const [step, setStep] = useState(1)
     const { cartPro } = useContext(Cartcontext)
@@ -21,23 +23,44 @@ function CheckoutCart() {
 
                 {
                     cartPro.length !== 0 ?
-                        <div className="md:w-4/5 w-3/4 mx-auto my-10 mb-40 md:px-10 flex-grow">
+                        <div className="md:w-4/5 w-3/4 mx-auto my-10 md:px-10 flex-grow">
                             {/* steps */}
                             <CheckoutSteps step={step} />
                             {/* cart items */}
-                            <div className="grid grid-cols-8 gap-14 my-16 justify-center">
-                                {/* product-quantity-price */}
-                                <div className="lg:col-span-5 col-span-8 lg:flex flex-col hidden gap-5">
-                                    <ProductsCatDetails />
+                            {step === 1 ?
+                                <div className="grid grid-cols-8 gap-14 my-16 justify-center">
+                                    {/* product-quantity-price */}
+                                    <div className="lg:col-span-5 col-span-8 lg:flex flex-col hidden gap-5">
+                                        <ProductsCatDetails />
+                                    </div>
+                                    <div className="lg:col-span-5 col-span-8 lg:hidden flex-col flex gap-5 lg:w-full w-3/4 m-auto">
+                                        <SmallProduct />
+                                    </div>
+                                    {/* cart summary */}
+                                    <div className="lg:col-span-3 col-span-8 border-[1px] rounded-md border-black p-3 h-fit lg:w-full w-3/4 m-auto my-0">
+                                        <CartSummary setStep={setStep} />
+                                    </div>
                                 </div>
-                                <div className="lg:col-span-5 col-span-8 lg:hidden flex-col flex gap-5 lg:w-full w-3/4 m-auto">
-                                    <SmallProduct/>
-                                </div>
-                                {/* cart summary */}
-                                <div className="lg:col-span-3 col-span-8 border-[1px] rounded-md border-black p-3 h-fit lg:w-full w-3/4 m-auto">
-                                    <CartSummary />
-                                </div>
-                            </div>
+                                /* step 2 */
+                                : step === 2 ?
+                                    <div className="grid grid-cols-8 gap-14 my-16 justify-center ">
+                                        {/* product-quantity-price */}
+                                        <div className="lg:col-span-5 col-span-8 flex flex-col gap-5 lg:w-full w-3/4 m-auto">
+                                            <CheckForms setStep={setStep}/>
+                                        </div>
+                                        {/*order summary */}
+                                        <div className="lg:col-span-3 col-span-8 border-[1px] rounded-md w-3/4 m-auto lg:w-full border-black p-3 h-fit my-0">
+                                            <OrderSummary/>
+                                            
+                                        </div>
+                                        <button className="p-3 text-center col-span-8 text-white bg-black rounded-md block lg:hidden w-3/4 m-auto" onClick={() => setStep(prev => prev + 1)}>Place Order</button>
+                                    </div>
+                                /* step 3 */
+                                    : <div className="my-16">
+                                        <OrderComplete/>
+                                    </div>
+                            }
+
                         </div> :
                         <div className="flex-grow my-20">
                             <p className="text-center text-3xl">Cart is empty, go shopping and check items</p>

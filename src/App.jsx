@@ -18,10 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route element={
-            <CartProvider>
-              <ProtectedRoutes />
-            </CartProvider>}>
+          <Route element={<CartProvider> <ProtectedRoutes/> </CartProvider>}>
             <Route path="/Home" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/productdetail/:id" element={<Productdetail />} />
