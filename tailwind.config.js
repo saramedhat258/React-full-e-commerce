@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+import scrollbar from 'tailwind-scrollbar'
 import flowbite from "flowbite-react/tailwind";
 export default {
   content: [
@@ -13,12 +13,12 @@ export default {
       screens: {
         'xs': '450px',
         'xxs': '350px',
-        'xm':'900px',
+        'xm': '900px',
       },
     },
   },
   plugins: [
-    flowbite.plugin(),
+    scrollbar,
   ],
   safelist: [
     '-translate-x-full',

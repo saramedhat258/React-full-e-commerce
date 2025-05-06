@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
     const [addedPrice, setAddedPrice] = useState(0)
 
     /* add to cart function */
-    const AddToCart=async (pro, selectedColor = null) => {
+    const AddToCart=(pro, selectedColor = null) => {
         /* if it has a color it will have a unique composite key (id+color)  */
         const compositeKey = selectedColor ? `${pro?._id}-${selectedColor}` : pro?._id
         setCartPro(prevcart => {

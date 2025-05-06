@@ -41,7 +41,7 @@ function Home() {
                 <Link to='/shop' className="my-auto text-end hidden md:block"><span className="border-b-2 border-black w-1/2 pb-1 font-medium">More Products <FontAwesomeIcon icon={faArrowRight} /></span> </Link>
             </section>
             <section className="">
-                <div className="scroll-pl-6 snap-x flex gap-8 w-5/6 mx-auto overflow-x-scroll scroll-smooth mt-10 scrollbar-hide">
+                <div className="scroll-pl-6 snap-x flex gap-8 w-5/6 mx-auto overflow-x-scroll scroll-smooth mt-10 scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent pb-5">
                     {AllProducts.map(pro => {
                         if (pro?.newarr===true) {
                             return(

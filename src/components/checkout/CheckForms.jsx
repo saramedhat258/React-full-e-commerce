@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { OrderContext } from "../../context/OrderDetailContext"
 function CheckForms({ setStep }) {
     const methods = ['Pay by Card Credit', 'Paypal']
     const [checked, setChecked] = useState('Pay by Card Credit')
+    const { setPaymentMethod,handleClick } = useContext(OrderContext)
+    
     return (
         <>
             {/* Contact Info */}
@@ -63,7 +66,7 @@ function CheckForms({ setStep }) {
                 {methods.map(cart => (
                     <div key={cart} className="border-[1px] p-3 my-5 has-[:checked]:bg-gray-100 has-[:checked]:border-black border-gray-600 rounded-md" onClick={() => { setChecked(cart.name) }}>
                         <div className="flex gap-1 items-center">
-                            <input type="radio" name={cart} checked={cart === checked} onChange={() => { setChecked(cart) }} className="checked:bg-black focus:ring-0" />
+                            <input type="radio" name={cart} checked={cart === checked} onChange={() => { setChecked(cart), setPaymentMethod(cart) }} className="checked:bg-black focus:ring-0" />
                             <label htmlFor="Free shipping">{cart}</label>
                         </div>
                     </div>
@@ -84,7 +87,7 @@ function CheckForms({ setStep }) {
                     </div>
                 </div>
             </div>
-            <button className="p-3 text-center text-white bg-black rounded-md hidden lg:block" onClick={() => setStep(prev => prev + 1)}>Place Order</button>
+            <button className="p-3 text-center text-white bg-black rounded-md hidden lg:block" onClick={()=>handleClick(setStep)}>Place Order</button>
         </>
     )
 }

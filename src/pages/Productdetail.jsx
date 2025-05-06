@@ -1,24 +1,25 @@
 import Header from '../components/Global/Header'
 import Footer from '../components/Global/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { fetchOneProduct } from '../Axios'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { Cartcontext } from '../context/CartContext'
+import { WishContext } from '../context/WishlistContext'
+import { XIcon } from 'lucide-react'
+import StarRating from '../components/Global/StarRating'
 
 function Productdetail() {
     const [details, setDetails] = useState([])
     const [selectedColor, setSelectedColor] = useState(null)
     const [err, setErr] = useState(null)
     const [productInCart, setproductInCart] = useState(null)
+    const {AddTowish}=useContext(WishContext)
     const { AddToCart, cartPro, increseQun, decreseQun } = useContext(Cartcontext)
     const param = useParams()
-
-    /* to get desired product from backend */
-    console.log(cartPro)
+    const [wish,setwish]=useState(false)
     useEffect(() => {
         fetchOneProduct(setDetails, param.id)
     }, [param.id])
@@ -58,11 +59,7 @@ function Productdetail() {
                 {/* product info */}
                 <section className=''>
                     <section className='flex gap-1 align-center'>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
-                        <p><FontAwesomeIcon icon={faStar} className='text-yellow-300' /></p>
+                        <StarRating rating={details?details.rate:''} /> 
                         <p>11 review</p>
                     </section>
                     <section className='space-y-2 mt-5'>
@@ -104,8 +101,13 @@ function Productdetail() {
                                     </section>
                                 }
                                 {/* add to wishlist */}
-                                <section className={`cursor-pointer flex items-center gap-2 justify-center ${productInCart ? 'col-span-2' : 'col-span-3 p-2'} border-black border-2 text-center rounded-lg`}>
-                                    <FontAwesomeIcon icon={faHeart} /> <p className=''>add to wishlist</p>
+                                <section 
+                                onClick={()=>{AddTowish(details),setwish(!wish)}}
+                                className={`cursor-pointer flex items-center gap-2 justify-center ${productInCart ? 'col-span-2' : 'col-span-3 p-2'} border-black border-2 text-center rounded-lg`}>
+                                    {!wish?
+                                    <> <FontAwesomeIcon icon={faHeart} /> <p>add to wishlist</p> </>
+                                    :<> <XIcon/> <p>Remove from wishlist</p> </>
+                                    }
                                 </section>
                             </section>
                             {/* add to cart */}

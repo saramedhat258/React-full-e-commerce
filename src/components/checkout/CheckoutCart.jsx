@@ -11,9 +11,11 @@ import SmallProduct from "./SmallProduct"
 import OrderSummary from "./OrderSummary"
 import CheckForms from "./CheckForms"
 import OrderComplete from "./OrderComplete"
+import { OrderContext } from "../../context/OrderDetailContext"
 function CheckoutCart() {
     const [step, setStep] = useState(1)
     const { cartPro } = useContext(Cartcontext)
+    const { handleClick } = useContext(OrderContext)
 
     return (
         <>
@@ -53,7 +55,7 @@ function CheckoutCart() {
                                             <OrderSummary/>
                                             
                                         </div>
-                                        <button className="p-3 text-center col-span-8 text-white bg-black rounded-md block lg:hidden w-3/4 m-auto" onClick={() => setStep(prev => prev + 1)}>Place Order</button>
+                                        <button className="p-3 text-center col-span-8 text-white bg-black rounded-md block lg:hidden w-3/4 m-auto" onClick={() =>handleClick(setStep)}>Place Order</button>
                                     </div>
                                 /* step 3 */
                                     : <div className="my-16">

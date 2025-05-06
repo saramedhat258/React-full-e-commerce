@@ -31,7 +31,7 @@ function Drawer() {
             {/* Drawer */}
             <div
                 id="drawer-navigation"
-                className={`fixed top-0 right-0 z-40 w-[350px] h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 transition-transform duration-300 ease-in-out ${
+                className={`fixed top-0 right-0 z-40 sm:w-[350px] w-[290px]  h-screen p-4 overflow-y-auto bg-white  transition-transform duration-300 ease-in-out ${
                     isOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
                 tabIndex={-1}
@@ -65,9 +65,9 @@ function Drawer() {
                     <span className="sr-only">Close menu</span>
                 </button>
 
-                <div className="py-4 overflow-y-auto h-[95%]">
+                <div className="py-4 h-[95%]">
                     <div className='flex flex-col h-full'>
-                        <div className='flex-grow overflow-y-auto mb-10'>
+                        <div className='flex-grow overflow-y-auto mb-10 scrollbar-thin  '>
                             {
                                 cartPro.map(item =>
                                     <div key={`${item?.compositeKey}`}>
@@ -88,7 +88,7 @@ function Drawer() {
                                     <p>${total}</p>
                                 </div>
                                 <Link to='/checkout' className='inline-block my-5 w-full p-2 text-white bg-black rounded-lg'>Checkout</Link>
-                                <Link to='/checkout' className='inline-block font-medium border-b-2 border-b-black pb-1 w-1/4 m-auto'>View Cart</Link>
+                                <Link to='/checkout' className='inline-block font-medium border-b-2 border-b-black pb-1 sm:w-1/4 w-1/2 m-auto'>View Cart</Link>
                             </div> :
                             <div className="mt-auto">
                                 <p className="text-center text-2xl">Cart is empty, go shopping and check items</p>
